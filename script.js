@@ -1,9 +1,11 @@
 // Cursor following effect
 const cursor = document.querySelector('.cursor');
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
+if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+}
 
 // Typing effect for greeting
 const greetingText = "Hey You Know What! You're the most adorable human i ever met! 💖";
@@ -11,7 +13,7 @@ const greetingElement = document.querySelector('.greeting');
 let charIndex = 0;
 
 function typeGreeting() {
-    if (charIndex < greetingText.length) {
+    if (greetingElement && charIndex < greetingText.length) {
         greetingElement.textContent += greetingText.charAt(charIndex);
         charIndex++;
         setTimeout(typeGreeting, 100);
@@ -19,7 +21,8 @@ function typeGreeting() {
 }
 
 // Create floating elements
-const floatingElements = ['💖', '✨', '🌸', '💫', '💕'];
+const floatingElements = ['💖', '✨', '🌸', '💫', '💕', '💞', '🥳', '🎈', '🎉', '🎊'];
+
 function createFloating() {
     const element = document.createElement('div');
     element.className = 'floating';
@@ -65,31 +68,32 @@ window.addEventListener('load', () => {
     setInterval(createFloating, 1000);
 });
 
-// Hover effects
-       // Hover effects
-       document.querySelectorAll('.cta-button').forEach(button => {
-        button.addEventListener('mouseenter', () => {
-            gsap.to(button, {
-                scale: 1.1,
-                duration: 0.3
-            });
-        });
-
-        button.addEventListener('mouseleave', () => {
-            gsap.to(button, {
-                scale: 1,
-                duration: 0.3
-            });
-        });
-
-        // Smooth page transition on click
-        button.addEventListener('click', () => {
-            gsap.to('body', {
-                opacity: 0,
-                duration: 1,
-                onComplete: () => {
-                    window.location.href = 'cause.html'; // Replace with the actual URL of the next page
-                }
-            });
+// Hover effects & Navigation Logic
+const ctaButton = document.querySelector('.cta-button');
+if (ctaButton) {
+    ctaButton.addEventListener('mouseenter', () => {
+        gsap.to(ctaButton, {
+            scale: 1.1,
+            duration: 0.3
         });
     });
+
+    ctaButton.addEventListener('mouseleave', () => {
+        gsap.to(ctaButton, {
+            scale: 1,
+            duration: 0.3
+        });
+    });
+
+    // Smooth page transition on click
+    ctaButton.addEventListener('click', () => {
+        gsap.to('body', {
+            opacity: 0,
+            duration: 1,
+            onComplete: () => {
+                // PERUBAHAN DISINI: Arahkan ke born.html, bukan cause.html
+                window.location.href = 'born.html';
+            }
+        });
+    });
+}

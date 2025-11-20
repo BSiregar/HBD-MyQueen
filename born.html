@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Happy Birthday Sayang 💕</title>
+    <link rel="stylesheet" href="born.css">
+    <!-- Menambahkan Font yang cantik -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Audio Latar Belakang (Opsional, sesuaikan nama file) -->
+    <audio id="musik-ku" src="lagu-kita.mp3" autoplay loop></audio>
+
+    <div class="page">
+        <header class="hero">
+            <h1>Untuk Sayangku</h1>
+            <p class="sub">Selamat ulang tahun yang ke-22 🎉</p>
+        </header>
+
+        <main class="card">
+            <div class="birth-info">
+                <div class="info-item">
+                    <p class="label">Tanggal lahir</p>
+                    <p class="date">21 November 2003</p>
+                </div>
+
+                <div class="info-item">
+                    <p class="label">Umur Sekarang</p>
+                    <p class="age" id="age">22</p>
+                </div>
+
+                <p class="note" id="note"></p>
+            </div>
+
+            <div class="actions">
+                <button id="giftBtn" class="btn pink">Buka Hadiah 🎁</button>
+                <button id="confettiBtn" class="btn">Play Confetti 🎊</button>
+            </div>
+            
+            <!-- Tombol Lanjut dipisah agar lebih jelas -->
+            <div style="margin-top: 20px; width: 100%;">
+                <button id="proceedBtn" class="btn outline full-width">Lanjut ke Surprise 👉</button>
+            </div>
+
+            <div id="gift" class="gift hidden">
+                <div class="gift-content">
+                    <p class="gift-text">Sayang, semoga hari-harimu dipenuhi tawa, cinta, dan kebahagiaan. Kamu adalah hadiah terindah di hidupku! 💖</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Efek Confetti sederhana tanpa library berat -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="born.js"></script>
+
+    <script>
+        const audioPlayerCause = document.getElementById('musik-ku');
+
+        // Saat pengguna akan meninggalkan halaman ini...
+        window.addEventListener('beforeunload', function () {
+            // Simpan detik lagu saat ini ke localStorage
+            localStorage.setItem('songTime', audioPlayerCause.currentTime);
+        });
+    </script>
+</body>
+</html>

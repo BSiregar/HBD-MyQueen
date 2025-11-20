@@ -16,207 +16,69 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg,
-                    #ffd1dc 0%,
-                    #e6e6fa 25%,
-                    #ffefd5 50%,
-                    #e6e6fa 75%,
-                    #ffd1dc 100%);
+            background: linear-gradient(135deg, #ffd1dc 0%, #e6e6fa 25%, #ffefd5 50%, #e6e6fa 75%, #ffd1dc 100%);
             background-size: 400% 400%;
             animation: gradientFlow 15s ease infinite;
             font-family: 'Quicksand', sans-serif;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Penting agar hujan love tidak bikin scroll samping */
             color: #4a4a4a;
+            text-align: center;
+            padding-bottom: 50px;
         }
 
         @keyframes gradientFlow {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Enhanced Sparkle Effect */
-        .magic-sparkles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: white;
-            animation: twinkle var(--duration, 4s) ease-in-out infinite;
-            opacity: 0;
-        }
-
-        @keyframes twinkle {
-
-            0%,
-            100% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-
-            50% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-        }
-
-        /* Generate 50 sparkles with different positions and animations */
-        .magic-sparkles::before,
-        .magic-sparkles::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle, white 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: sparkleLayer 8s linear infinite;
-            opacity: 0.5;
-        }
-
-        .magic-sparkles::after {
-            animation-delay: -4s;
-            transform: rotate(45deg);
-        }
-
-        @keyframes sparkleLayer {
-            0% {
-                transform: translateY(0);
-            }
-
-            100% {
-                transform: translateY(-50px);
-            }
-        }
-
-        /* Floating Hearts */
-        .floating-hearts {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 1.5rem;
-            color: rgba(255, 105, 180, 0.6);
-            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
-            animation-delay: var(--delay, 0s);
-        }
-
-        @keyframes floatHeart {
-            0% {
-                transform: translate(0, 100vh) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
-            }
-        }
-
-        /* Welcome Section */
-        .welcome {
-            text-align: center;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 3;
-        }
-
-        .welcome h1 {
+        h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: #ff69b4;
+            margin: 2rem 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-            animation: fadeInScale 2s ease;
         }
 
-        .welcome p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 1.5rem auto;
-            line-height: 1.6;
-            animation: fadeIn 2s ease 0.5s both;
-        }
-
-        /* Enhanced Memory Cards */
-        .memory-container {
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            z-index: 3;
-            position: relative;
         }
 
         .memory-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 300px;
             position: relative;
-            overflow: hidden;
         }
 
         .memory-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .memory-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        .memory-card:hover::before {
-            transform: translateX(100%);
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.2);
+            z-index: 10;
         }
 
         .memory-img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 10px;
             margin-bottom: 1rem;
-            transition: transform 0.5s ease;
-        }
-
-        .memory-card:hover .memory-img {
-            transform: scale(1.05);
         }
 
         .memory-date {
-            font-family: 'Dancing Script', cursive;
+            font-size: 0.9rem;
             color: #ff69b4;
-            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
@@ -226,205 +88,187 @@
             color: #666;
         }
 
-        /* Final Message Section */
         .final-message {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            margin-top: 3rem;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.9);
+            margin-left: 20px;
+            margin-right: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
             position: relative;
-            z-index: 3;
+            z-index: 5;
         }
 
         .final-message h2 {
             font-family: 'Dancing Script', cursive;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #ff69b4;
-            margin-bottom: 2rem;
-            animation: heartbeat 2s infinite;
-        }
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
+            margin-bottom: 1.5rem;
         }
 
         .final-message p {
             font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
+            margin-bottom: 1rem;
             line-height: 1.8;
         }
 
         .goodbye-btn {
             display: inline-block;
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
-            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
             color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
             text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3);
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-            animation: float 3s infinite ease-in-out;
+            position: relative;
+            z-index: 20; /* Pastikan tombol di atas hujan love */
         }
 
         .goodbye-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5);
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInScale {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Generate Hearts */
-        .js-generate-hearts {
+        /* Style untuk Hujan Love */
+        .rain-container {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 2;
+            z-index: 9999;
+            overflow: hidden;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 12px;
+        .heart-drop {
+            position: absolute;
+            top: -10vh;
+            font-size: 1.5rem;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-fill-mode: forwards;
         }
 
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #ff69b4, #da70d6);
-            border-radius: 6px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .welcome h1 {
-                font-size: 3rem;
-            }
-
-            .memory-container {
-                grid-template-columns: 1fr;
-            }
-
-            .final-message h2 {
-                font-size: 2.5rem;
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
             }
         }
     </style>
 </head>
 
 <body>
-    <audio id="musik-ku" src="lagu-kita.mp3" autoplay loop>
-        Browser Anda tidak mendukung pemutar audio ini.
-    </audio>
-    <div class="magic-sparkles"></div>
-    <div class="floating-hearts">
-        <!-- Hearts will be generated via CSS -->
-        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
-        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
-        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
-        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
-        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
-    </div>
+    <!-- Audio Player -->
+    <audio id="musik-ku" src="lagu-kita.mp3" autoplay loop></audio>
 
-    <section class="welcome">
-        <h1>Our Beautiful Moments Together</h1>
-        <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
-    </section>
+    <!-- Kontainer untuk efek hujan -->
+    <div id="rainContainer" class="rain-container"></div>
 
-    <div class="memory-container">
+    <h1>Our Beautiful Memories ✨</h1>
+
+    <div class="gallery">
+        <!-- Card 1 -->
         <div class="memory-card">
-            <img src="./d1.jpg" alt="First Date" class="memory-img">
-            <div class="memory-date">Her Smile Says It All</div>
-            <div class="memory-caption">You’re truly one of the sweetest girls I know, and I feel lucky to have a sis
-                like you.❤️</div>
+            <img src="./d1.jpg" alt="First Date" class="memory-img" onerror="this.src='https://via.placeholder.com/300x250?text=Our+Photo+1'">
+            <div class="memory-date">Sweet Moments</div>
+            <div class="memory-caption">Every moment with you feels like a beautiful dream I never want to wake up from. 💭💕</div>
         </div>
+
+        <!-- Card 2 -->
         <div class="memory-card">
-            <img src="./d2.jpg" alt="Beach Day" class="memory-img">
-            <div class="memory-date">Together Vibes</div>
-            <div class="memory-caption">May your journey ahead be filled with happiness, success, and endless
-                smiles.😊💕</div>
+            <img src="./d2.jpg" alt="Adventure" class="memory-img" onerror="this.src='https://via.placeholder.com/300x250?text=Our+Photo+2'">
+            <div class="memory-date">Happy Vibes</div>
+            <div class="memory-caption">Your smile is literally my favorite thing in the entire world. Keep smiling, love! 😊✨</div>
         </div>
+
+        <!-- Card 3 -->
         <div class="memory-card">
-            <img src="./d3.jpg" alt="Movie Night" class="memory-img">
+            <img src="./d3.jpg" alt="Movie Night" class="memory-img" onerror="this.src='https://via.placeholder.com/300x250?text=Our+Photo+3'">
             <div class="memory-date">Pretty Soul</div>
-            <div class="memory-caption">Keep being the amazing person you are—you make every moment brighter.🌸💖</div>
+            <div class="memory-caption">Keep being the amazing person you are—you make every moment brighter. 🌸💖</div>
         </div>
-
     </div>
 
     <section class="final-message">
         <h2>Thank You for the Memories</h2>
-        <p>Every laugh, every chat, and every moment we’ve shared has been truly special.💫<br>
+        <p>Every laugh, every chat, and every moment we’ve shared has been truly special. 💫<br>
             I’m so grateful for the bond we have, and for the positivity you always bring into my life.<br>
-            On your birthday, I just wish for endless happiness, love, and success to come your way.🌸</p>
-        <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
-        <a href="#" class="goodbye-btn">Until We Meet Again 💝</a>
+            On your birthday, I just wish for endless happiness, love, and success to come your way. 🌸</p>
+        <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy. ✨</p>
+        
+        <!-- Tombol Pemicu Efek -->
+        <a href="#" class="goodbye-btn" id="finalBtn">Until We Meet Again 💝</a>
     </section>
 
     <script>
-        // Saat halaman ini selesai dimuat...
         window.addEventListener('DOMContentLoaded', function () {
+            // 1. LOGIKA MUSIK MENYAMBUNG
             const audioPlayerLast = document.getElementById('musik-ku');
+            const savedTime = localStorage.getItem('musicTime');
 
-            // Ambil waktu lagu yang disimpan dari halaman sebelumnya
-            const savedTime = localStorage.getItem('songTime');
-
-            // Jika ada waktu yang tersimpan...
-            if (savedTime) {
-                // Atur lagu di halaman ini untuk mulai dari detik tersebut
+            if (savedTime && audioPlayerLast) {
                 audioPlayerLast.currentTime = parseFloat(savedTime);
+                // Hapus savedTime jika sudah sampai halaman terakhir (opsional, biar bersih)
+                // localStorage.removeItem('musicTime'); 
+                audioPlayerLast.play().catch(e => console.log("Playback auto check"));
             }
 
-            // 'autoplay' di tag audio akan mengurus sisanya
+            // 2. LOGIKA HUJAN EMOJI LOVE
+            const finalBtn = document.getElementById('finalBtn');
+            const rainContainer = document.getElementById('rainContainer');
+
+            finalBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // Mencegah link refresh halaman
+                
+                // Ganti teks tombol
+                this.textContent = "I Love You Always! 💖";
+                this.style.background = "white";
+                this.style.color = "#ff1493";
+
+                // Buat hujan love!
+                makeItRain();
+            });
+
+            function makeItRain() {
+                const emojis = ['❤️', '💖', '💕', '💗', '💓', '💘', '💝', '💞', '💟'];
+                const totalDrops = 150; // Jumlah emoji (Sangat banyak!)
+
+                for (let i = 0; i < totalDrops; i++) {
+                    setTimeout(() => {
+                        const drop = document.createElement('div');
+                        drop.classList.add('heart-drop');
+                        
+                        // Pilih emoji random
+                        drop.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                        
+                        // Posisi horizontal random (0% - 100%)
+                        drop.style.left = Math.random() * 100 + 'vw';
+                        
+                        // Ukuran random
+                        const size = Math.random() * 2 + 1; // 1rem sampai 3rem
+                        drop.style.fontSize = size + 'rem';
+                        
+                        // Durasi jatuh random (biar tidak barengan)
+                        const duration = Math.random() * 3 + 2; // 2s sampai 5s
+                        drop.style.animationDuration = duration + 's';
+                        
+                        rainContainer.appendChild(drop);
+
+                        // Hapus elemen setelah animasi selesai biar browser tidak berat
+                        setTimeout(() => {
+                            drop.remove();
+                        }, duration * 1000);
+
+                    }, i * 50); // Delay antar emoji (i * 50ms) biar jatuhnya bertahap
+                }
+            }
         });
     </script>
 </body>
-
 </html>

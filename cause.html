@@ -4,16 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why You're My Queen! 👑💗</title>
+    <title>Why You're My Queen! 👸💖</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="stylesheet" href="./cause.css">
     <style>
-
+        /* Tambahan style untuk tombol Next di halaman ini */
+        .next-page-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: white;
+            color: #ff69b4;
+            text-decoration: none;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.3s ease;
+            border: 2px solid #ff69b4;
+            cursor: pointer;
+        }
+        .next-page-btn:hover {
+            transform: scale(1.1);
+            background: #ff69b4;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
+    <!-- Audio Player -->
     <audio id="musik-ku" src="lagu-kita.mp3" autoplay loop></audio>
+    
     <div class="custom-cursor">
         <svg viewBox="0 0 24 24">
             <path fill="#ff69b4"
@@ -27,31 +49,54 @@
         <div class="photo-container">
             <img src="foto-queen.jpg" alt="My Queen" class="queen-photo">
         </div>
+        
         <div id="reasons-container"></div>
 
-        <button class="shuffle-button">Click Here... 💕</button>
+        <button class="shuffle-button">Click Here... 💌</button>
         <div class="reason-counter"></div>
 
         <div class="ending-section">
             <div class="teddy-hug">
-                <img src="./d1.jpg" alt="Teddy Hug">
+                <!-- Ganti src dengan gambar teddy/love jika ada, atau hapus alt jika tidak ada -->
+                <img src="d1.jpg" alt="Teddy Hug" onerror="this.style.display='none'"> 
             </div>
             <div class="ending-text">You're the MOST BEAUTIFUL GIRL ! 💖</div>
+            
+            <!-- TOMBOL MENUJU LAST.HTML -->
+            <br>
+            <button id="toLastPageBtn" class="next-page-btn">Lihat Kenangan Kita ➡️</button>
         </div>
     </div>
 
-    <script src="cause.js">
-    </script>
+    <script src="cause.js"></script>
 
     <script>
-        const audioPlayerCause = document.getElementById('musik-ku');
+        // --- LOGIKA MUSIK CONTINUOUS ---
+        window.addEventListener('DOMContentLoaded', function () {
+            const audio = document.getElementById('musik-ku');
+            
+            // 1. Ambil waktu tersimpan dari halaman sebelumnya (born.html)
+            const savedTime = localStorage.getItem('musicTime');
+            
+            if (savedTime && audio) {
+                audio.currentTime = parseFloat(savedTime);
+                // Pastikan audio bermain (kadang browser butuh interaksi user dulu, tapi karena sudah dari halaman sebelumnya biasanya aman)
+                audio.play().catch(e => console.log("Autoplay blocked, waiting for interaction"));
+            }
 
-        // Saat pengguna akan meninggalkan halaman ini...
-        window.addEventListener('beforeunload', function () {
-            // Simpan detik lagu saat ini ke localStorage
-            localStorage.setItem('songTime', audioPlayerCause.currentTime);
+            // 2. Logika Tombol ke Last Page
+            const nextBtn = document.getElementById('toLastPageBtn');
+            if(nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    // Simpan waktu saat ini sebelum pindah
+                    if(audio) {
+                        localStorage.setItem('musicTime', audio.currentTime);
+                    }
+                    // Pindah halaman
+                    window.location.href = 'last.html';
+                });
+            }
         });
     </script>
 </body>
-
 </html>
